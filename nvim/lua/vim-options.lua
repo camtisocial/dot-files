@@ -33,8 +33,8 @@ vim.keymap.set('n', '<leader>h', '<C-w>s', { noremap = true, silent = true }) --
 vim.keymap.set('n', '<leader>v', '<C-w>v', { noremap = true, silent = true }) -- Split vertically 
 
 --mappings for scrolling
-vim.keymap.set('n', '<M-j>', '<C-e>M', { noremap = true, silent = true }) -- Scroll down 
-vim.keymap.set('n', '<M-k>', '<C-y>M', { noremap = true, silent = true }) -- Scroll up 
+vim.keymap.set('n', '<M-j>', '3<C-e>M', { noremap = true, silent = true }) -- Scroll down 
+vim.keymap.set('n', '<M-k>', '3<C-y>M', { noremap = true, silent = true }) -- Scroll up 
 vim.keymap.set('n', '<M-d>', '<C-d>zz', { noremap = true, silent = true }) -- Scroll down half page
 vim.keymap.set('n', '<M-u>', '<C-u>zz', { noremap = true, silent = true }) -- Scroll up half page
 
