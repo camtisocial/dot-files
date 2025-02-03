@@ -1,0 +1,9 @@
+
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+theme = miasma
+shell-integration-features = no-cursor,sudo,no-title
+cursor-style = block
+background-opacity = 0.97
+
+
