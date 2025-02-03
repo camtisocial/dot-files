@@ -34,6 +34,9 @@ vim.keymap.set('n', '<M-C-l>', '<C-w>L', { noremap = true, silent = true }) -- M
 vim.keymap.set('n', '<M-C-j>', '<C-w>J', { noremap = true, silent = true }) -- Move pane down
 vim.keymap.set('n', '<M-C-k>', '<C-w>K', { noremap = true, silent = true }) -- Move pane up
 
+--mappings for creating splits
+vim.keymap.set('n', '<leader>h', '<C-w>s', { noremap = true, silent = true }) -- Split horizontally
+vim.keymap.set('n', '<leader>v', '<C-w>v', { noremap = true, silent = true }) -- Split vertically 
 
 vim.keymap.set("i", "hh", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>q', ':bd<CR>', { noremap = true, silent = true }) -- Quit buffer
