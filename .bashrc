@@ -85,6 +85,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias ,='cd ..'
     alias desk='cd ~/Desktop'
     alias c='clear'
+    alias weather='curl wttr.in'
+    alias moon='curl wttr.in/moon'
 fi
 
 # colored GCC warnings and errors
