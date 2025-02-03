@@ -22,6 +22,9 @@ return {
         end)
       end, { desc = 'Send message to Copilot Chat' })
 
+      vim.keymap.set('n', '<leader>co', function()
+        require('CopilotChat').open()
+      end, { desc = 'Open Copilot Chat' })
     end,
   },
 }

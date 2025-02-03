@@ -10,12 +10,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
 
---mappings for using leader, can't get this to work with tmux sadly
---vim.keymap.set('n', '<leader>h', '<C-w>h', { noremap = true, silent = true }) -- Move left
---vim.keymap.set('n', '<leader>l', '<C-w>l', { noremap = true, silent = true }) -- Move right
---vim.keymap.set('n', '<leader>j', '<C-w>j', { noremap = true, silent = true }) -- Move down
---vim.keymap.set('n', '<leader>k', '<C-w>k', { noremap = true, silent = true }) -- Move up
-
 --mappings to match tmux navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true }) -- Move left
 vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, silent = true }) -- Move right
@@ -38,7 +32,28 @@ vim.keymap.set('n', '<M-C-k>', '<C-w>K', { noremap = true, silent = true }) -- M
 vim.keymap.set('n', '<leader>h', '<C-w>s', { noremap = true, silent = true }) -- Split horizontally
 vim.keymap.set('n', '<leader>v', '<C-w>v', { noremap = true, silent = true }) -- Split vertically 
 
+--mappings for scrolling
+vim.keymap.set('n', '<M-j>', '<C-e>M', { noremap = true, silent = true }) -- Scroll down 
+vim.keymap.set('n', '<M-k>', '<C-y>M', { noremap = true, silent = true }) -- Scroll up 
+vim.keymap.set('n', '<M-d>', '<C-d>zz', { noremap = true, silent = true }) -- Scroll down half page
+vim.keymap.set('n', '<M-u>', '<C-u>zz', { noremap = true, silent = true }) -- Scroll up half page
+
+--mappings for search
+vim.keymap.set('n', 'n', 'nzzzv', { noremap = true, silent = true }) -- Scroll up half page
+vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true }) -- Scroll up half page
+
+--mappings for visual mode
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines down
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines up
+
+--mappings for copy and paste
+vim.keymap.set('n', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard
+vim.keymap.set('v', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard
+
+--escape remap
 vim.keymap.set("i", "hh", "<Esc>", { noremap = true, silent = true })
+
+--buffers and windows
 vim.keymap.set('n', '<leader>q', ':bd<CR>', { noremap = true, silent = true }) -- Quit buffer
 vim.keymap.set('n', '<Tab>', ':bprevious<CR>', { noremap = true, silent = true }) -- Previous buffer
 vim.keymap.set('n', '<S-Tab>', ':bnext<CR>', { noremap = true, silent = true }) -- Next buffer
