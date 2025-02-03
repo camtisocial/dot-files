@@ -10,14 +10,29 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
 
+--mappings for using leader, can't get this to work with tmux sadly
 --vim.keymap.set('n', '<leader>h', '<C-w>h', { noremap = true, silent = true }) -- Move left
 --vim.keymap.set('n', '<leader>l', '<C-w>l', { noremap = true, silent = true }) -- Move right
 --vim.keymap.set('n', '<leader>j', '<C-w>j', { noremap = true, silent = true }) -- Move down
 --vim.keymap.set('n', '<leader>k', '<C-w>k', { noremap = true, silent = true }) -- Move up
+
+--mappings to match tmux navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true }) -- Move left
 vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, silent = true }) -- Move right
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true }) -- Move down
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, silent = true }) -- Move up
+
+--mappings to resize windows
+vim.keymap.set('n', '<M-S-h>', '<C-w><', { noremap = true, silent = true }) -- Decrease width
+vim.keymap.set('n', '<M-S-l>', '<C-w>>', { noremap = true, silent = true }) -- Increase width
+vim.keymap.set('n', '<M-S-j>', '<C-w>-', { noremap = true, silent = true }) -- Decrease height
+vim.keymap.set('n', '<M-S-k>', '<C-w>+', { noremap = true, silent = true }) -- Increase height
+
+--mappings to move panes
+vim.keymap.set('n', '<M-C-h>', '<C-w>H', { noremap = true, silent = true }) -- Move pane left
+vim.keymap.set('n', '<M-C-l>', '<C-w>L', { noremap = true, silent = true }) -- Move pane right
+vim.keymap.set('n', '<M-C-j>', '<C-w>J', { noremap = true, silent = true }) -- Move pane down
+vim.keymap.set('n', '<M-C-k>', '<C-w>K', { noremap = true, silent = true }) -- Move pane up
 
 
 vim.keymap.set("i", "hh", "<Esc>", { noremap = true, silent = true })
