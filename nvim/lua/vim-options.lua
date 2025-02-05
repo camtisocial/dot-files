@@ -62,4 +62,7 @@ vim.keymap.set('n', '<leader>/', ':noh<CR><Esc>', { noremap = true, silent = tru
 vim.keymap.set('t', '<leader>t', '<C-\\><C-n>', { noremap = true, silent = true }) -- exit terminal mode
 vim.keymap.set('n', '<leader>nt', ':enew | terminal<CR>', { noremap = true, silent = true }) -- new terminal
 
+--temporary full screen
+vim.keymap.set('n', '<leader>fs', '<C-w>|', { noremap = true, silent = true }) -- full screen
+vim.keymap.set('n', '<leader>sf', '<C-w>=', { noremap = true, silent = true }) -- full screen
 
