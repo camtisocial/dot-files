@@ -33,14 +33,14 @@ vim.keymap.set('n', '<leader>h', '<C-w>s', { noremap = true, silent = true }) --
 vim.keymap.set('n', '<leader>v', '<C-w>v', { noremap = true, silent = true }) -- Split vertically 
 
 --mappings for scrolling
-vim.keymap.set('n', '<M-j>', '3<C-e>M', { noremap = true, silent = true }) -- Scroll down 
-vim.keymap.set('n', '<M-k>', '3<C-y>M', { noremap = true, silent = true }) -- Scroll up 
-vim.keymap.set('n', '<M-d>', '<C-d>zz', { noremap = true, silent = true }) -- Scroll down half page
-vim.keymap.set('n', '<M-u>', '<C-u>zz', { noremap = true, silent = true }) -- Scroll up half page
+-- vim.keymap.set('n', '<M-j>', '3<C-e>M', { noremap = true, silent = true }) -- Scroll down 
+-- vim.keymap.set('n', '<M-k>', '3<C-y>M', { noremap = true, silent = true }) -- Scroll up 
+-- vim.keymap.set('n', '<M-d>', '<C-d>zz', { noremap = true, silent = true }) -- Scroll down half page
+-- vim.keymap.set('n', '<M-u>', '<C-u>zz', { noremap = true, silent = true }) -- Scroll up half page
 
 --mappings for search
-vim.keymap.set('n', 'n', 'nzzzv', { noremap = true, silent = true }) -- Scroll up half page
-vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true }) -- Scroll up half page
+vim.keymap.set('n', 'n', 'nzzzv', { noremap = true, silent = true }) -- keep centered while searching
+vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true }) -- 
 
 --mappings for visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines down
