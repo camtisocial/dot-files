@@ -55,9 +55,9 @@ vim.keymap.set("i", "hh", "<Esc>", { noremap = true, silent = true })
 
 --buffers and windows
 vim.keymap.set('n', '<leader>q', ':bd<CR>', { noremap = true, silent = true }) -- Quit buffer
-vim.keymap.set('n', '<Tab>', ':bprevious<CR>', { noremap = true, silent = true }) -- Previous buffer
-vim.keymap.set('n', '<S-Tab>', ':bnext<CR>', { noremap = true, silent = true }) -- Next buffer
-vim.keymap.set('n', '<A-Tab>', ':b#<CR>', { noremap = true, silent = true }) -- switch to last buffer
+vim.keymap.set('n', '<leader><Tab>', '<C-^>', { noremap = true, silent = true }) -- Switch buffer
+vim.keymap.set('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true }) -- Previous buffer
+vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true }) -- Next buffer
 vim.keymap.set('n', '<leader>/', ':noh<CR><Esc>', { noremap = true, silent = true }) -- clear / search
 vim.keymap.set('t', '<leader>t', '<C-\\><C-n>', { noremap = true, silent = true }) -- exit terminal mode
 vim.keymap.set('n', '<leader>nt', ':enew | terminal<CR>', { noremap = true, silent = true }) -- new terminal

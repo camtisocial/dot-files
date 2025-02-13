@@ -17,11 +17,11 @@ return {
 
     -- Smooth half-page scrolling with cursor centering
     vim.keymap.set('n', '<M-d>', function()
-      neoscroll.scroll(vim.api.nvim_win_get_height(0) / 2, { smooth = true, duration = 150 })
+      neoscroll.scroll(vim.api.nvim_win_get_height(0) / 2, { smooth = true, duration = 300 })
     end, { noremap = true, silent = true })
 
     vim.keymap.set('n', '<M-u>', function()
-      neoscroll.scroll(-vim.api.nvim_win_get_height(0) / 2, { smooth = true, duration = 150 })
+      neoscroll.scroll(-vim.api.nvim_win_get_height(0) / 2, { smooth = true, duration = 300 })
     end, { noremap = true, silent = true })
   end,
 }

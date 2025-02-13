@@ -28,4 +28,5 @@ require("lazy").setup({
   },
   install = { colorscheme = { "miasma" } },
   checker = { enabled = true },
+  change_detection = { notify = false },
 })

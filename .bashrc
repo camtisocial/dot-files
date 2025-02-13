@@ -45,7 +45,7 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
+if [ -n "$force_color_prompt:-" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -56,7 +56,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
+if [ "$color_prompt:-" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -76,26 +76,22 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    alias ,='cd ..'
-    alias desk='cd ~/Desktop'
-    alias c='clear'
-    alias weather='curl wttr.in'
-    alias moon='curl wttr.in/moon'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ,='cd ..'
+alias desk='cd ~/Desktop'
+alias c='clear'
+alias weather='curl wttr.in'
+alias moon='curl wttr.in/moon'
+alias v='nvim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -132,3 +128,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+
+DEBSIGN_KEYID=474EC44B7DC9BF3
+. "$HOME/.cargo/env"
