@@ -23,9 +23,6 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -87,7 +84,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ,='cd ..'
-alias desk='cd ~/Desktop'
 alias c='clear'
 alias weather='curl wttr.in'
 alias moon='curl wttr.in/moon'
@@ -131,7 +127,23 @@ esac
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
 
 DEBSIGN_KEYID=474EC44B7DC9BF3
 . "$HOME/.cargo/env"
+
+eval "$(zoxide init --cmd cd bash)"
+
+
+
+
+
+
+
+
+
+
+
+
+
