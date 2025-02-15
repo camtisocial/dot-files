@@ -127,8 +127,8 @@ esac
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519"
 
 DEBSIGN_KEYID=474EC44B7DC9BF3
 . "$HOME/.cargo/env"
