@@ -127,19 +127,17 @@ esac
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519"
+# enabling fzf ctrl-r stuff
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
+#eval "$(ssh-agent -s)" &> /dev/null
+#if [ -f ~/.ssh/id_ed25519 ]; then
+#    ssh-add ~/.ssh/id_ed25519 &> /dev/null
+#fi
 DEBSIGN_KEYID=474EC44B7DC9BF3
 . "$HOME/.cargo/env"
 
 eval "$(zoxide init --cmd cd bash)"
-
-
-
-
-
-
 
 
 
