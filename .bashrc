@@ -80,6 +80,7 @@ fi
 
 
 # some more ls aliases
+alias ls='lsd'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -88,6 +89,8 @@ alias c='clear'
 alias pipes='pipes.sh'
 alias weather='curl wttr.in'
 alias moon='curl wttr.in/moon'
+alias moon='curl wttr.in/moon'
+alias tree='lsd --tree'
 alias v='nvim'
 
 # Add an "alert" alias for long running commands.  Use like so:
