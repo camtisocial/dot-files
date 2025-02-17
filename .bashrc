@@ -118,6 +118,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+#nvm
+export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/init-nvm.sh
+
+
 # pnpm
 export PNPM_HOME="/home/cameron/.local/share/pnpm"
 case ":$PATH:" in
@@ -131,14 +136,16 @@ esac
 # enabling fzf ctrl-r stuff
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
+
 #eval "$(ssh-agent -s)" &> /dev/null
 #if [ -f ~/.ssh/id_ed25519 ]; then
 #    ssh-add ~/.ssh/id_ed25519 &> /dev/null
 #fi
 DEBSIGN_KEYID=474EC44B7DC9BF3
 . "$HOME/.cargo/env"
-
+eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
+
 
 
 
