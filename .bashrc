@@ -92,7 +92,13 @@ alias moon='curl wttr.in/moon'
 alias moon='curl wttr.in/moon'
 alias tree='lsd --tree'
 alias v='nvim'
-
+alias bye='poweroff'
+alias audio='flatpak run com.saivert.pwvucontrol'
+alias status='systemctl --user status'
+alias restart='systemctl --user restart'
+alias yz='yazi'
+alias intercept-on='sudo systemctl enable --now interception.service'
+alias intercept-off='sudo systemctl stop interception.service && sudo systemctl disable interception.service'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -140,18 +146,19 @@ esac
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
 
-#eval "$(ssh-agent -s)" &> /dev/null
-#if [ -f ~/.ssh/id_ed25519 ]; then
-#    ssh-add ~/.ssh/id_ed25519 &> /dev/null
-#fi
-
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 
 
+y() {
+    local tmp="$(mktemp)"
+    yazi "$@" --cwd-file="$tmp"
+    if [ -s "$tmp" ]; then
+        cd "$(cat "$tmp")" || return
+    fi
+    rm -f "$tmp"
+}
 
 
 
-
-
-
+export PATH="$HOME/.cargo/bin:$PATH"

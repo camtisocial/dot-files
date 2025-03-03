@@ -66,3 +66,5 @@ vim.keymap.set('n', '<leader>nt', ':enew | terminal<CR>', { noremap = true, sile
 vim.keymap.set('n', '<leader>fs', '<C-w>|', { noremap = true, silent = true }) -- full screen
 vim.keymap.set('n', '<leader>sf', '<C-w>=', { noremap = true, silent = true }) -- full screen
 
+--yazi remap
+
