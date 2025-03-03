@@ -9,6 +9,9 @@ vim.g.maplocalleader = "\\"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 
 --mappings to match tmux navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true }) -- Move left
