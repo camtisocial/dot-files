@@ -14,8 +14,7 @@
         "mpris",
     ],
     "modules-right": [
-        "load",
-      	// "wireplumber",
+      	"wireplumber",
         "clock",
         "tray"
     ],
@@ -40,7 +39,8 @@
         "all-outputs": true
     },
 
-    "custom/cava": {
+
+    "cava": {
 	//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
       "exec": "cava -p ~/.config/cava/config",
     	"framerate": 30,
@@ -93,7 +93,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%m-%d-%Y}"
     },
 
     "cpu": {
@@ -249,7 +250,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%m-%d-%Y}"
     },
 
     "cpu": {

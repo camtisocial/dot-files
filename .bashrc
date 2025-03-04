@@ -61,9 +61,9 @@ alias bye='poweroff'
 alias audio='flatpak run com.saivert.pwvucontrol'
 alias status='systemctl --user status'
 alias restart='systemctl --user restart'
-alias yz='yazi'
 alias intercept-on='sudo systemctl enable --now interception.service'
 alias intercept-off='sudo systemctl stop interception.service && sudo systemctl disable interception.service'
+# alias yz='yazi'
 alias day='~/scripts/day.sh'
 alias night='~/scripts/night.sh'
 alias cs='echo -e "\n"; neofetch --ascii "$(fortune | cowsay -W 30)"'
@@ -119,7 +119,7 @@ eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 [ -f "$HOME/.cache/wal/colors.sh" ] && source "$HOME/.cache/wal/colors.sh"
 
-y() {
+yz() {
     local tmp="$(mktemp)"
     yazi "$@" --cwd-file="$tmp"
     if [ -s "$tmp" ]; then
