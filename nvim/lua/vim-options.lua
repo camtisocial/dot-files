@@ -48,6 +48,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true }) --
 --mappings for visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines down
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines up
+vim.keymap.set('v', 'np', '}', { noremap = true, silent = true }) -- Move to next paragraph
+vim.keymap.set('v', 'Np', '{', { noremap = true, silent = true }) -- Move to previous paragraph
+vim.keymap.set('n', 'np', '}', { noremap = true, silent = true }) -- Move to next paragraph
+vim.keymap.set('n', 'Np', '{', { noremap = true, silent = true }) -- Move to previous paragraph
 
 --mappings for copy and paste
 vim.keymap.set('n', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard

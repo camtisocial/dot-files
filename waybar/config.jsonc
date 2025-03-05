@@ -9,13 +9,15 @@
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
+        "custom/cava",
     ],
     "modules-center": [
         "mpris",
     ],
     "modules-right": [
       	"wireplumber",
-        "clock",
+        "custom/clock1",
+        "custom/clock2",
         "tray"
     ],
     // Modules configuration
@@ -40,8 +42,8 @@
     },
 
 
-    "cava": {
-	//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+    "custom/cava": {
+	//  "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
       "exec": "cava -p ~/.config/cava/config",
     	"framerate": 30,
     	"autosens": 1,
@@ -90,11 +92,19 @@
         "format": " {}"
     },
 
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%I:%M %p}",
-        "format-alt": "{:%m-%d-%Y}"
+    "custom/clock1": {
+        "exec": "date +'%I:%M %p'", 
+        "interval": 60, 
+        "tooltip-format": "<big>Current Time</big>\n<tt><small>{}</small></tt>",
+        "format": "{}"
+    },
+
+
+    "custom/clock2": {
+        "exec": "date +'%m/%d/%y'",
+        "interval": 3600,
+        "tooltip-format": "<big>Current Date</big>\n<tt><small>{}</small></tt>",
+        "format": "{}"
     },
 
     "cpu": {
@@ -196,9 +206,9 @@
         "max-length": 40,
         "all-outputs": true
     },
-
     "custom/cava": {
-	//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+
+	    // "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
       "exec": "cava -p ~/.config/cava/config",
     	"framerate": 30,
     	"autosens": 1,
@@ -211,7 +221,7 @@
     	"bar_delimiter": 0,
     	"noise_reduction": 0.77,
     	"input_delay": 2,
-            "hide_on_silence": true,
+      "hide_on_silence": true,
     	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
     	"actions": {
     	    "on-click-right": "mode"
@@ -219,14 +229,15 @@
     },
 
     "mpris": {
- 	"format": " {status_icon} {dynamic}",
+      	"format": " {status_icon} {dynamic}",
         "interval": 1,
         "dynamic-len": 40,
-	"status-icons": {
-		"playing": "▶",
-		"paused": "⏸",
-		"stopped": ""
-	},
+      	"status-icons": {
+	    	"playing": "▶",
+	    	"paused": "⏸",
+	    	"stopped": ""
+	   },
+
 	"dynamic-order": ["title", "artist"],
 	"ignored-players": ["firefox"]
     },
