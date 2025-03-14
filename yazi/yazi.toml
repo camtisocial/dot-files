@@ -1,2 +1,4 @@
 [opener]
 edit = [{ run = 'nvim "$@"', block = true }]
+pdf = [{ run = 'firefox "$@"', block = false }]
+

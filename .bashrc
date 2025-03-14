@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+
+bind '"\C-y": "\C-l"'
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -57,7 +60,7 @@ alias moon='curl wttr.in/moon'
 alias htop='bpytop'
 alias tree='lsd --tree'
 alias v='nvim'
-alias bye='poweroff'
+alias bye='echo "Bye bye!"; sleep 2; poweroff'
 alias audio='flatpak run com.saivert.pwvucontrol'
 alias status='systemctl --user status'
 alias restart='systemctl --user restart'
@@ -67,6 +70,8 @@ alias intercept-off='sudo systemctl stop interception.service && sudo systemctl 
 alias day='~/scripts/day.sh'
 alias night='~/scripts/night.sh'
 alias cs='echo -e "\n"; neofetch --ascii "$(fortune | cowsay -W 30)"'
+alias ra='tmux attach-session -t'
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
