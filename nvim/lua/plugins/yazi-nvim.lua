@@ -7,7 +7,7 @@ return {
       keys = {
         -- 👇 in this section, choose your own keymappings!
         {
-          "<leader>yz",
+          "<leader>z",
           mode = { "n", "v" },
           "<cmd>Yazi<cr>",
           desc = "Open yazi at the current file",

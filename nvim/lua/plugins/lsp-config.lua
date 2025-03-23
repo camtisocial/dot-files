@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "clangd", "html", "ts_ls", "mdx_analyzer" }
+        ensure_installed = { "lua_ls", "clangd", "html", "mdx_analyzer", "eslint", "rust_analyzer", "biome", "ast_grep"},
       })
     end
   },
@@ -20,9 +20,11 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.clangd.setup({})
       lspconfig.eslint.setup({})
-      lspconfig.ts_ls.setup({})
       lspconfig.html.setup({})
       lspconfig.mdx_analyzer.setup({})
+      lspconfig.rust_analyzer.setup({})
+      lspconfig.biome.setup({})
+      lspconfig.ast_grep.setup({})
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
       vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})

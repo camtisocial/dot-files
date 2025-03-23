@@ -6,4 +6,3 @@ return {
     require("pywal").setup()
   end,
 }
-

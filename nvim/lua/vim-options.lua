@@ -1,5 +1,5 @@
 vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
+vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 --vim.cmd([[autocmd VimEnter * Neotree filesystem reveal left]])
@@ -11,13 +11,22 @@ vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.shortmess:append "c"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 --mappings to match tmux navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true }) -- Move left
 vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, silent = true }) -- Move right
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true }) -- Move down
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, silent = true }) -- Move up
+
+--misc mappings
+vim.keymap.set('n', 'H', '^', { noremap = true, silent = true }) -- Move to beginning of line
+vim.keymap.set('n', 'L', '$', { noremap = true, silent = true }) -- Move to end of line
+vim.keymap.set('v', 'H', '^', { noremap = true, silent = true }) -- Move to beginning of line
+vim.keymap.set('v', 'L', '$', { noremap = true, silent = true }) -- Move to end of line
 
 --mappings to resize windows
 vim.keymap.set('n', '<M-S-h>', '<C-w><', { noremap = true, silent = true }) -- Decrease width
@@ -69,9 +78,12 @@ vim.keymap.set('n', '<leader>/', ':noh<CR><Esc>', { noremap = true, silent = tru
 vim.keymap.set('t', '<leader>t', '<C-\\><C-n>', { noremap = true, silent = true }) -- exit terminal mode
 vim.keymap.set('n', '<leader>nt', ':enew | terminal<CR>', { noremap = true, silent = true }) -- new terminal
 
---temporary full screen
-vim.keymap.set('n', '<leader>fs', '<C-w>|', { noremap = true, silent = true }) -- full screen
-vim.keymap.set('n', '<leader>sf', '<C-w>=', { noremap = true, silent = true }) -- full screen
+--mappings for copilot ocmpletion
+vim.api.nvim_set_keymap('i', '<C-g>', '<Plug>(copilot-next)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-h>', '<Plug>(copilot-previous)', {silent = true})
+vim.api.nvim_set_keymap('i', '<C-e>', '<Plug>(copilot-accept-line)', {silent = true})
 
---yazi remap
+--temporary full screen
+-- vim.keymap.set('n', '<leader>fs', '<C-w>|', { noremap = true, silent = true }) -- full screen
+-- vim.keymap.set('n', '<leader>sf', '<C-w>=', { noremap = true, silent = true }) -- full screen
 

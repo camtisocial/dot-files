@@ -124,7 +124,7 @@ eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 [ -f "$HOME/.cache/wal/colors.sh" ] && source "$HOME/.cache/wal/colors.sh"
 
-yz() {
+z() {
     local tmp="$(mktemp)"
     yazi "$@" --cwd-file="$tmp"
     if [ -s "$tmp" ]; then
