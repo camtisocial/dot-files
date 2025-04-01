@@ -45,10 +45,20 @@ return {
 					end
 				end)
 			end, { desc = "Send message to Copilot Chat" })
+			vim.keymap.set("v", "<leader>c", function()
+				vim.ui.input({ prompt = "Copilot Chat: " }, function(input)
+					if input then
+						-- Replace with the actual function to send the message to Copilot
+						--require('copilot_chat').send_message(input)
+						require("CopilotChat").ask(input)
+					end
+				end)
+			end, { desc = "Send message to Copilot Chat" })
 
 			vim.keymap.set("n", "<leader>co", function()
 				require("CopilotChat").open()
 			end, { desc = "Open Copilot Chat" })
+
 		end,
 	},
 }

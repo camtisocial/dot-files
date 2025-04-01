@@ -1,7 +1,16 @@
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=2")
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.keymap.set('n', 'ff', 'za', { noremap = true, silent = true }) -- Toggle fold
 vim.cmd("set shiftwidth=2")
+vim.api.nvim_set_hl(0, 'FlashBackdrop', { foreground = '#ffffff', background = '#000000' })
+vim.api.nvim_set_hl(0, 'FlashMatch', { foreground = '#ffffff', background = '#222222' })
+vim.api.nvim_set_hl(0, 'FlashLabel', { foreground = '#46f705', background = '#000000' })
+vim.api.nvim_set_hl(0, 'FlashCurrent', { foreground = '#ffffff', background = '#000000' })
 --vim.cmd([[autocmd VimEnter * Neotree filesystem reveal left]])
 
 vim.g.mapleader = " "
@@ -13,8 +22,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 vim.opt.shortmess:append "c"
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 --mappings to match tmux navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true }) -- Move left
@@ -57,11 +64,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true }) --
 --mappings for visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines down
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines up
-vim.keymap.set('v', 'np', '}', { noremap = true, silent = true }) -- Move to next paragraph
-vim.keymap.set('v', 'Np', '{', { noremap = true, silent = true }) -- Move to previous paragraph
-vim.keymap.set('n', 'np', '}', { noremap = true, silent = true }) -- Move to next paragraph
-vim.keymap.set('n', 'Np', '{', { noremap = true, silent = true }) -- Move to previous paragraph
-
+vim.keymap.set('v', '<Down>', '}', { noremap = true, silent = true }) -- Move to next paragraph
+vim.keymap.set('v', '<Up>', '{', { noremap = true, silent = true }) -- Move to previous paragraph
+vim.keymap.set('n', '<Down>', '}', { noremap = true, silent = true }) -- Move to next paragraph
+vim.keymap.set('n', '<Up>', '{', { noremap = true, silent = true }) -- Move to previous paragraph
 --mappings for copy and paste
 vim.keymap.set('n', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard
 vim.keymap.set('v', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard
@@ -84,6 +90,9 @@ vim.api.nvim_set_keymap('i', '<C-h>', '<Plug>(copilot-previous)', {silent = true
 vim.api.nvim_set_keymap('i', '<C-e>', '<Plug>(copilot-accept-line)', {silent = true})
 
 --temporary full screen
--- vim.keymap.set('n', '<leader>fs', '<C-w>|', { noremap = true, silent = true }) -- full screen
--- vim.keymap.set('n', '<leader>sf', '<C-w>=', { noremap = true, silent = true }) -- full screen
+vim.keymap.set('n', '<leader>Fs', '<C-w>|', { noremap = true, silent = true }) -- full screen
+vim.keymap.set('n', '<leader>Sf', '<C-w>=', { noremap = true, silent = true }) -- full screen
+vim.api.nvim_set_hl(0, 'FlashCursor', { foreground = '#ffffff', background = '#000000' })
 
+--misc telescope stuff
+vim.keymap.set('n', '<leader>ll', ':Noice telescope<CR>', { noremap = true, silent = true }) -- Noice telescope
