@@ -2,10 +2,11 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=2")
 vim.o.foldcolumn = '1' -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
+-- vim.o.foldlevel = 9999 -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldlevelstart = 9999
 vim.o.foldenable = true
-vim.keymap.set('n', 'ff', 'za', { noremap = true, silent = true }) -- Toggle fold
+vim.keymap.set('n', 'ff', 'za', { noremap = true, silent = true }) --unfold
+vim.keymap.set('n', 'Ff', 'zA', { noremap = true, silent = true }) --unfold all
 vim.cmd("set shiftwidth=2")
 vim.api.nvim_set_hl(0, 'FlashBackdrop', { foreground = '#ffffff', background = '#000000' })
 vim.api.nvim_set_hl(0, 'FlashMatch', { foreground = '#ffffff', background = '#222222' })
@@ -64,10 +65,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true }) --
 --mappings for visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines down
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) -- Move selected lines up
-vim.keymap.set('v', '<Down>', '}', { noremap = true, silent = true }) -- Move to next paragraph
-vim.keymap.set('v', '<Up>', '{', { noremap = true, silent = true }) -- Move to previous paragraph
-vim.keymap.set('n', '<Down>', '}', { noremap = true, silent = true }) -- Move to next paragraph
-vim.keymap.set('n', '<Up>', '{', { noremap = true, silent = true }) -- Move to previous paragraph
+vim.keymap.set('v', '<M-j>', '}', { noremap = true, silent = true }) -- Move to next paragraph
+vim.keymap.set('v', '<M-k>', '{', { noremap = true, silent = true }) -- Move to previous paragraph
+vim.keymap.set('n', '<M-j>', '}', { noremap = true, silent = true }) -- Move to next paragraph
+vim.keymap.set('n', '<M-k>', '{', { noremap = true, silent = true }) -- Move to previous paragraph
 --mappings for copy and paste
 vim.keymap.set('n', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard
 vim.keymap.set('v', '<leader>y', "\"+y", { noremap = true, silent = true }) -- Copy to clipboard
