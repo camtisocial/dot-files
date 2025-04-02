@@ -31,7 +31,14 @@ require("lazy").setup({
   -- install = { colorscheme = { "wal" } },
   checker = { enabled = true },
   change_detection = { notify = false },
-  vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#70655c' }),
-  vim.api.nvim_set_hl(0, 'LineNr', { fg = '#cf9b3f' }),
-  vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#70655c' }),
+  vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#70655c' });
+  vim.api.nvim_set_hl(0, 'LineNr', { fg = '#cf9b3f' });
+  vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#70655c' });
+  vim.api.nvim_set_hl(0, 'UfoFoldedEllipsis', { fg = '#de499c' });
+  vim.api.nvim_set_hl(0, 'UfoFoldedBg', { fg = '#de499c' });
+  vim.api.nvim_set_hl(0, 'UfoFoldedFg', { fg = '#de499c' });
+  vim.api.nvim_set_hl(0, 'UfoPreviewCursorLine', { fg = '#de499c' });
+  vim.api.nvim_set_hl(0, 'UfoFoldedLine', { fg = '#de499c' });
+  vim.api.nvim_set_hl(0, 'UfoPreviewWinBar', { fg = '#de499c' });
+
 })

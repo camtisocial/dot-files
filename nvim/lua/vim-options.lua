@@ -2,8 +2,9 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=2")
 vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 -- vim.o.foldlevel = 9999 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 9999
+vim.opt.foldlevelstart = 100 
 vim.o.foldenable = true
 vim.keymap.set('n', 'ff', 'za', { noremap = true, silent = true }) --unfold
 vim.keymap.set('n', 'Ff', 'zA', { noremap = true, silent = true }) --unfold all
