@@ -70,7 +70,7 @@ alias intercept-off='sudo systemctl stop interception.service && sudo systemctl 
 alias day='~/scripts/day.sh'
 alias night='~/scripts/night.sh'
 alias cs='echo -e "\n"; neofetch --ascii "$(fortune | cowsay -W 30)"'
-alias ra='tmux attach-session -t'
+alias ta='tmux attach-session -t'
 
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -136,3 +136,8 @@ z() {
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/opt/flutter/bin:$PATH"
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+
