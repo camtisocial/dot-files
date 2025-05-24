@@ -2,6 +2,27 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# PATHS
+export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin"
+
+# Flutter
+export PATH="/opt/flutter/bin:$PATH"
+
+# Android SDK
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_HOME/emulator:$PATH"
+
+
+# Chromium for Flutter web
+export CHROME_EXECUTABLE="/usr/bin/chromium"
+
+export MANPAGER="less -R"
+
+
+[ -f ~/.openai.env ] && source ~/.openai.env
+
 
 bind '"\C-y": "\C-l"'
 
@@ -71,6 +92,7 @@ alias day='~/scripts/day.sh'
 alias night='~/scripts/night.sh'
 alias cs='echo -e "\n"; neofetch --ascii "$(fortune | cowsay -W 30)"'
 alias ta='tmux attach-session -t'
+alias tc='tmux new-session -s'
 
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -133,11 +155,19 @@ z() {
     rm -f "$tmp"
 }
 
+man() {
+  LESS_TERMCAP_mb=$'\e[1;31m'  # blink -> red
+  LESS_TERMCAP_md=$'\e[1;31m'  # bold -> cyan
+  LESS_TERMCAP_me=$'\e[0m'     # reset
+  LESS_TERMCAP_se=$'\e[0m'
+  LESS_TERMCAP_so=$'\e[1;44;97m'  # standout -> white on blue
+  LESS_TERMCAP_ue=$'\e[0m'
+  LESS_TERMCAP_us=$'\e[1;31m'  # underline -> green
+  command man "$@"
+}
 
 
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/opt/flutter/bin:$PATH"
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-export PATH=$ANDROID_HOME/platform-tools:$PATH
+
+
+
 

@@ -33,13 +33,6 @@ return {
 				)
 			end, { noremap = true, silent = true })
 
-			vim.keymap.set("n", "<C-u>", function()
-				vim.cmd("normal! zz")
-				neoscroll.scroll(
-					-vim.api.nvim_win_get_height(0) / 2,
-					{ move_cursor = true, smooth = true, duration = 300 }
-				)
-			end, { noremap = true, silent = true })
 		end,
 		hide_cursor = true, -- Hide cursor while scrolling
 		post_hook = function()

@@ -8,6 +8,19 @@ vim.opt.foldlevelstart = 100
 vim.o.foldenable = true
 vim.keymap.set("n", "ff", "za", { noremap = true, silent = true }) --unfold
 vim.keymap.set("n", "Ff", "zA", { noremap = true, silent = true }) --unfold all
+
+vim.keymap.set({ "i", "s" }, "<leader>uh", function()
+  require("luasnip").unlink_current()
+end, { desc = "Exit snippet mode" })
+
+vim.keymap.set("n", "cc", function()
+  vim.cmd("NoiceDismiss")
+end, { noremap = true, silent = true })
+
+vim.keymap.set("v", "cc", function()
+  vim.cmd("NoiceDismiss")
+end, { noremap = true, silent = true })
+
 vim.cmd("set shiftwidth=2")
 vim.api.nvim_set_hl(0, "FlashBackdrop", { foreground = "#ffffff", background = "#000000" })
 vim.api.nvim_set_hl(0, "FlashMatch", { foreground = "#ffffff", background = "#222222" })

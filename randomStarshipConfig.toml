@@ -44,3 +44,8 @@ style = "yellow"
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
+
+[dart]
+symbol = ""
+format = "[$symbol$version]($style) "
+style = "cyan"

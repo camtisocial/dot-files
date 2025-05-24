@@ -11,4 +11,4 @@ return {
 		vim.api.nvim_set_hl(0, "UfoFoldedLine", { fg = "#de499c" })
 		vim.api.nvim_set_hl(0, "UfoPreviewWinBar", { fg = "#de499c" })
 	end,
-}
+} 

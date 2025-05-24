@@ -4,7 +4,15 @@ return {
 	{
 		"brianaung/compl.nvim",
 		dependencies = {
-			{ "hrsh7th/vim-vsnip" },
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
+			{ "hrsh7th/cmp-calc" },
+			{ "hrsh7th/cmp-emoji" },
+			{ "hrsh7th/cmp-nvim-lua" },
+			{ "hrsh7th/cmp-copilot" },
 		},
 		opts = {
 			-- Default options (no need to set them again)
