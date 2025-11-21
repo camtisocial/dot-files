@@ -103,6 +103,11 @@ vim.keymap.set("n", "<leader>nt", ":enew | terminal<CR>", { noremap = true, sile
 vim.api.nvim_set_keymap("i", "<C-g>", "<Plug>(copilot-next)", { silent = true })
 vim.api.nvim_set_keymap("i", "<C-h>", "<Plug>(copilot-previous)", { silent = true })
 vim.api.nvim_set_keymap("i", "<C-e>", "<Plug>(copilot-accept-line)", { silent = true })
+vim.api.nvim_create_user_command("CopilotOff", function()
+  vim.b.copilot_enabled = false
+end, {})
+
+
 
 --temporary full screen
 vim.keymap.set("n", "<leader>Fs", "<C-w>|", { noremap = true, silent = true }) -- full screen

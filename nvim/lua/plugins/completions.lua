@@ -31,7 +31,9 @@ return {
 		},
 	},
 
-	{ "github/copilot.vim" },
+	{ "github/copilot.vim",
+	  lazy = false,
+	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
