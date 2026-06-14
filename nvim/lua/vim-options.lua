@@ -7,7 +7,10 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.foldlevelstart = 100
 vim.o.foldenable = true
 vim.keymap.set("n", "ff", "za", { noremap = true, silent = true }) --unfold
-vim.keymap.set("n", "Ff", "zA", { noremap = true, silent = true }) --unfold all
+vim.keymap.set("n", "<leader>za", function()
+  vim.cmd("normal! zM")
+  vim.cmd("normal! zR")
+end, { noremap = true, silent = true, desc = "Collapse then expand all folds" })
 
 vim.keymap.set({ "i", "s" }, "<leader>uh", function()
   require("luasnip").unlink_current()
@@ -49,6 +52,12 @@ vim.keymap.set("n", "H", "^", { noremap = true, silent = true }) -- Move to begi
 vim.keymap.set("n", "L", "$", { noremap = true, silent = true }) -- Move to end of line
 vim.keymap.set("v", "H", "^", { noremap = true, silent = true }) -- Move to beginning of line
 vim.keymap.set("v", "L", "$", { noremap = true, silent = true }) -- Move to end of line
+
+-- move to next and previous word
+vim.keymap.set("n", "<M-l>", "w", { noremap = true, silent = true }) -- Move to next word
+vim.keymap.set("n", "<M-h>", "b", { noremap = true, silent = true }) -- Move to previous word
+vim.keymap.set("v", "<M-l>", "w", { noremap = true, silent = true }) -- Move to next word
+vim.keymap.set("v", "<M-h>", "b", { noremap = true, silent = true }) -- Move to previous word
 
 --mappings to resize windows
 vim.keymap.set("n", "<M-S-h>", "<C-w><", { noremap = true, silent = true }) -- Decrease width
@@ -106,6 +115,9 @@ vim.api.nvim_set_keymap("i", "<C-e>", "<Plug>(copilot-accept-line)", { silent = 
 vim.api.nvim_create_user_command("CopilotOff", function()
   vim.b.copilot_enabled = false
 end, {})
+vim.api.nvim_create_user_command("CopilotOn", function()
+  vim.b.copilot_enabled = true
+end, {})
 
 
 
@@ -114,5 +126,32 @@ vim.keymap.set("n", "<leader>Fs", "<C-w>|", { noremap = true, silent = true }) -
 vim.keymap.set("n", "<leader>Sf", "<C-w>=", { noremap = true, silent = true }) -- full screen
 vim.api.nvim_set_hl(0, "FlashCursor", { foreground = "#ffffff", background = "#000000" })
 
---misc telescope stuff
-vim.keymap.set("n", "<leader>ll", ":Noice telescope<CR>", { noremap = true, silent = true }) -- Noice telescope
+--python development stuff
+local opts = { noremap = true, silent = false }
+vim.o.splitbelow = true   -- horizontal splits open below
+vim.o.splitright = true   -- vertical splits open to the right
+-- Run current Python file in horizontal split terminal
+vim.api.nvim_set_keymap('n', '<F1>', ':w<CR>:split | resize 12 | terminal python3 %<CR>', opts)
+
+-- Run current Python file in vertical split terminal
+vim.api.nvim_set_keymap('n', '<F2>', ':w<CR>:vsplit | vertical resize ' .. math.floor(vim.o.columns / 3) .. ' | terminal python3 %<CR>', opts)
+
+-- Run pytest for the current file
+vim.api.nvim_set_keymap('n', '<F3>', ':w<CR>:split | terminal pytest %<CR>', opts)
+
+-- Exit terminal mode quickly
+vim.api.nvim_set_keymap('t', '<C-q>', '<C-\\><C-n>:bd!<CR>', opts)
+
+-- Neovim 0.12 compat: TSNode.range() can be nil on injected nodes,
+-- crashing nvim-treesitter query_predicates. Patch get_range at the source.
+-- Remove when nvim-treesitter ships a fix.
+local _orig_get_range = vim.treesitter.get_range
+if _orig_get_range then
+  vim.treesitter.get_range = function(node, ...)
+    if not node or type(node.range) ~= "function" then
+      return 0, 0, 0, 0, 0, 0
+    end
+    return _orig_get_range(node, ...)
+  end
+end
+

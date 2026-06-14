@@ -1,0 +1,19 @@
+# AUR packages (installed with: yay -S --needed)
+# yay itself is bootstrapped by install.sh before this file is read.
+# Comments and blank lines are stripped by install.sh.
+
+droidcam
+bluetuith
+slack-desktop
+zoom
+claude-desktop-bin
+claude-cowork-service
+lotion-bin
+neofetch
+pacfetch-bin
+cbonsai
+pipes.sh
+
+# PipeWire volume control -- AUR only (not in official repos). Builds a native
+# binary from source, so `pwvucontrol` is on $PATH (no flatpak needed).
+pwvucontrol

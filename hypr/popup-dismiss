@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Click-away dismissal for the waybar clock popups (gsimplecal, clock-map).
+
+Run from a NON-consuming Hyprland mouse bind (`bindn = , mouse:272, exec, ...`),
+so it fires on every click, passes the click through to whatever is underneath,
+and closes a popup only when the click landed *outside* it. Pointer motion is
+ignored -- this mimics the xdg_popup grab that makes GTK menus (e.g. the waybar
+volume menu) click-away cleanly, which a plain toplevel window doesn't get.
+"""
+import json
+import subprocess
+import sys
+
+POPUPS = ("gsimplecal", "clock-map")
+# Clicks in the top strip are on the waybar bar (where these popups are opened
+# from); ignore them so the opening click can never immediately self-dismiss.
+BAR_ZONE_PX = 40
+
+
+def hc(*args):
+    return subprocess.run(["hyprctl", *args], capture_output=True, text=True).stdout
+
+
+def main():
+    clients = json.loads(hc("clients", "-j") or "[]")
+    open_popups = [c for c in clients if c.get("class") in POPUPS]
+    if not open_popups:
+        return  # nothing open -> cheap exit on the common click
+
+    pos = hc("cursorpos").strip().replace(" ", "")
+    try:
+        cx, cy = (int(v) for v in pos.split(","))
+    except ValueError:
+        return
+    if cy < BAR_ZONE_PX:
+        return
+
+    for c in open_popups:
+        x, y = c["at"]
+        w, h = c["size"]
+        inside = x <= cx < x + w and y <= cy < y + h
+        if not inside:
+            hc("dispatch", "closewindow", "address:" + c["address"])
+
+
+if __name__ == "__main__":
+    main()

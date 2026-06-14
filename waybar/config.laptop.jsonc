@@ -1,0 +1,125 @@
+// -*- mode: jsonc -*-
+// Waybar config: LAPTOP
+// A single bar (no "output" filter -> shows on whatever monitor is connected,
+// i.e. the internal eDP-1 panel) with battery + backlight modules added.
+// Committed; selected per-machine via the gitignored symlink
+//   waybar/config.jsonc -> config.laptop.jsonc
+{
+    "height": 24,
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "group/player"
+    ],
+    "modules-right": [
+        "backlight",
+        "battery",
+        "custom/volume",
+        "clock#time",
+        "clock#date",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "on-click": "hyprctl dispatch workspace {id}",
+        "on-scroll-up": "hyprctl dispatch workspace +1",
+        "on-scroll-down": "hyprctl dispatch workspace -1",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "default": ""
+        }
+    },
+
+    "group/player": {
+        "orientation": "horizontal",
+        "modules": ["mpris", "custom/cava"]
+    },
+
+    "custom/cava": {
+        "exec": "cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g'",
+        "format": "{}",
+        "restart-interval": 1,
+        "on-click": "playerctl --ignore-player=firefox play-pause"
+    },
+
+    "mpris": {
+        "format": " {status_icon} {dynamic}",
+        "interval": 1,
+        "dynamic-len": 40,
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": ""
+        },
+        "dynamic-order": ["title", "artist"],
+        "ignored-players": ["firefox"]
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "custom/volume": {
+        "exec": "~/.config/waybar/volume.sh",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 8,
+        "format": "{}",
+        "on-click": "~/.config/waybar/osd.sh vol-mute",
+        "on-scroll-up": "~/.config/waybar/osd.sh vol-up",
+        "on-scroll-down": "~/.config/waybar/osd.sh vol-down",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/audio-menu.xml",
+        "menu-actions": {
+            "sink0": "~/.config/waybar/audio-output.sh --slot 0",
+            "sink1": "~/.config/waybar/audio-output.sh --slot 1",
+            "sink2": "~/.config/waybar/audio-output.sh --slot 2",
+            "sink3": "~/.config/waybar/audio-output.sh --slot 3",
+            "sink4": "~/.config/waybar/audio-output.sh --slot 4",
+            "sink5": "~/.config/waybar/audio-output.sh --slot 5",
+            "sink6": "~/.config/waybar/audio-output.sh --slot 6",
+            "sink7": "~/.config/waybar/audio-output.sh --slot 7",
+            "mixer": "pwvucontrol 2>/dev/null || flatpak run com.saivert.pwvucontrol"
+        }
+    },
+
+        "clock#time": {
+        "format": "{:%I:%M %p}",
+        "interval": 60,
+        "tooltip": false,
+        "on-click": "pgrep -x clock-map >/dev/null && pkill -x clock-map || kitty -o cursor_trail=0 -o confirm_os_window_close=0 --class clock-map -e env CLOCK_MAP_NO_WATCH=1 clock-map",
+        "on-click-middle": "date '+%I:%M %p' | wl-copy --trim-newline"
+    },
+
+        "clock#date": {
+        "format": "{:%m/%d/%y}",
+        "interval": 60,
+        "tooltip": false,
+        "on-click": "env GTK_THEME=Gruvbox-gsimplecal gsimplecal",
+        "on-click-middle": "date '+%m/%d/%y' | wl-copy --trim-newline"
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    }
+}

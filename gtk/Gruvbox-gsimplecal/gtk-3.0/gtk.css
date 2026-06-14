@@ -1,0 +1,57 @@
+/* Gruvbox theme scoped to gsimplecal (launched via GTK_THEME=Gruvbox-gsimplecal).
+   Built on GTK's embedded dark Adwaita so widgets stay complete, then recolored
+   to match the waybar mute-menu palette (#282828 bg / #504945 border / #d79921). */
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+
+/* GtkCalendar is partly cairo-drawn — it pulls these named colors from the
+   style context, so overriding them is what actually recolors the grid. */
+@define-color theme_bg_color          #282828;
+@define-color theme_base_color        #282828;
+@define-color theme_fg_color          #ebdbb2;
+@define-color theme_text_color        #ebdbb2;
+@define-color theme_selected_bg_color #d79921;
+@define-color theme_selected_fg_color #282828;
+@define-color borders                 #504945;
+@define-color theme_unfocused_bg_color #282828;
+@define-color theme_unfocused_fg_color #ebdbb2;
+
+window,
+.background {
+    background-color: #282828;
+    color: #ebdbb2;
+    border: 1px solid #504945;
+    border-radius: 8px;
+}
+
+calendar {
+    background-color: #282828;
+    color: #ebdbb2;
+    padding: 6px;
+}
+
+/* selected day — gold pill, matching the menu hover accent */
+calendar:selected {
+    background-color: #d79921;
+    color: #282828;
+    border-radius: 5px;
+}
+
+/* month/year header + nav arrows */
+calendar.header,
+calendar.button {
+    color: #ebdbb2;
+}
+
+calendar.button:hover {
+    color: #d79921;
+}
+
+/* day-of-week labels and week numbers */
+calendar.highlight {
+    color: #83a598;
+}
+
+/* greyed-out days bleeding in from adjacent months */
+calendar:indeterminate {
+    color: #665c54;
+}

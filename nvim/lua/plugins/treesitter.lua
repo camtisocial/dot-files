@@ -20,7 +20,10 @@ return {
         "markdown",
         "markdown_inline",
       },
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        disable = { "markdown", "markdown_inline" },
+      },
       indent = { enable = true },
     })
   end,

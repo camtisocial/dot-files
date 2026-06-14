@@ -71,10 +71,8 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- List of servers to apply the same config to
 			local servers = {
 				"lua_ls",
 				"clangd",
@@ -87,11 +85,8 @@ return {
 				"ast_grep",
 			}
 
-			for _, server in ipairs(servers) do
-				lspconfig[server].setup({
-					capabilities = capabilities,
-				})
-			end
+			vim.lsp.config("*", { capabilities = capabilities })
+			vim.lsp.enable(servers)
 
 			-- Basic LSP keymaps
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

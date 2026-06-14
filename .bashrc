@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+[ -f ~/.secrets ] && source ~/.secrets
 # PATHS
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin"
 
@@ -13,6 +14,7 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/emulator:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 
 # Chromium for Flutter web
@@ -82,7 +84,7 @@ alias htop='bpytop'
 alias tree='lsd --tree'
 alias v='nvim'
 alias bye='echo "Bye bye!"; sleep 2; poweroff'
-alias audio='flatpak run com.saivert.pwvucontrol'
+alias audio='pwvucontrol'
 alias status='systemctl --user status'
 alias restart='systemctl --user restart'
 alias intercept-on='sudo systemctl enable --now interception.service'
@@ -90,10 +92,11 @@ alias intercept-off='sudo systemctl stop interception.service && sudo systemctl 
 # alias yz='yazi'
 alias day='~/scripts/day.sh'
 alias night='~/scripts/night.sh'
-alias cs='echo -e "\n"; neofetch --ascii "$(fortune | cowsay -W 30)"'
+# cs greeting removed -- fortune/cowsay no longer installed
 alias ta='tmux attach-session -t'
 alias tc='tmux new-session -s'
 
+alias claude-work='CLAUDE_CONFIG_DIR=$HOME/.claude-work claude'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -123,13 +126,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#nvm
+#nvm (guarded -- only loads if the nvm package is installed)
 export NVM_DIR="$HOME/.nvm"
-source /usr/share/nvm/init-nvm.sh
+[ -s /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
 
 # pnpm
-export PNPM_HOME="/home/cameron/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -141,7 +144,7 @@ esac
 # enabling fzf ctrl-r stuff
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 
-
+command -v navi >/dev/null 2>&1 && eval "$(navi widget bash)"
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
 [ -f "$HOME/.cache/wal/colors.sh" ] && source "$HOME/.cache/wal/colors.sh"
@@ -171,3 +174,11 @@ man() {
 
 
 
+
+# Created by `pipx` on 2025-12-02 03:09:13
+export PATH="$PATH:/home/wisp/.local/bin"
+[ -f /home/wisp/misc/.api_keys ] && source /home/wisp/misc/.api_keys
+
+alias claude-mem='/home/wisp/.bun/bin/bun "/home/wisp/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+
+export CLAUDE_CODE_NO_FLICKER=1

@@ -1,0 +1,9 @@
+hypr/host.conf
+waybar/config.jsonc
+
+# Generated per-machine by waybar/gen-audio-menu.sh (device list is host-specific)
+waybar/audio-menu.xml
+waybar/audio-menu.map
+
+# Rust build artifacts for the clock-map popup (rebuilt by bootstrap/install.sh)
+clock-map/target/

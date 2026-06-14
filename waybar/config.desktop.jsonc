@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 [{
-    "output": ["DP-3"], // Output names
+    "output": ["DP-1"], // Output names
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
@@ -9,15 +9,14 @@
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
-        "custom/cava",
     ],
     "modules-center": [
-        "mpris",
+        "group/player",
     ],
     "modules-right": [
-      	"wireplumber",
-        "custom/clock1",
-        "custom/clock2",
+      	"custom/volume",
+        "clock#time",
+        "clock#date",
         "tray"
     ],
     // Modules configuration
@@ -41,30 +40,20 @@
         "all-outputs": true
     },
 
+    "group/player": {
+        "orientation": "horizontal",
+        "modules": ["mpris", "custom/cava"]
+    },
 
     "custom/cava": {
-	//  "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-      "exec": "cava -p ~/.config/cava/config",
-    	"framerate": 30,
-    	"autosens": 1,
-    	"bars": 14,
-    	"lower_cutoff_freq": 50,
-    	"higher_cutoff_freq": 10000,
-    	"method": "pipewire",
-    	"source": "auto",
-    	"stereo": true,
-    	"bar_delimiter": 0,
-    	"noise_reduction": 0.77,
-    	"input_delay": 2,
-            "hide_on_silence": true,
-    	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-    	"actions": {
-    	    "on-click-right": "mode"
-    	}
+        "exec": "cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g'",
+        "format": "{}",
+        "restart-interval": 1,
+        "on-click": "playerctl --ignore-player=firefox play-pause"
     },
 
     "mpris": {
- 	"format": " {status_icon} {dynamic}",
+ 	"format": "  {status_icon} {dynamic}",
         "interval": 1,
         "dynamic-len": 40,
 	"status-icons": {
@@ -88,23 +77,21 @@
         "spacing": 10
     },
 
-    "load": {
-        "format": " {}"
-    },
-
-    "custom/clock1": {
-        "exec": "date +'%I:%M %p'", 
-        "interval": 60, 
-        "tooltip-format": "<big>Current Time</big>\n<tt><small>{}</small></tt>",
-        "format": "{}"
+        "clock#time": {
+        "format": "{:%I:%M %p}",
+        "interval": 60,
+        "tooltip": false,
+        "on-click": "pgrep -x clock-map >/dev/null && pkill -x clock-map || kitty -o cursor_trail=0 -o confirm_os_window_close=0 --class clock-map -e env CLOCK_MAP_NO_WATCH=1 clock-map",
+        "on-click-middle": "date '+%I:%M %p' | wl-copy --trim-newline"
     },
 
 
-    "custom/clock2": {
-        "exec": "date +'%m/%d/%y'",
-        "interval": 3600,
-        "tooltip-format": "<big>Current Date</big>\n<tt><small>{}</small></tt>",
-        "format": "{}"
+        "clock#date": {
+        "format": "{:%m/%d/%y}",
+        "interval": 60,
+        "tooltip": false,
+        "on-click": "env GTK_THEME=Gruvbox-gsimplecal gsimplecal",
+        "on-click-middle": "date '+%m/%d/%y' | wl-copy --trim-newline"
     },
 
     "cpu": {
@@ -145,22 +132,28 @@
         "format-icons": ["", "", "", "", ""]
     },
 
-    "wireplumber": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% ",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    "custom/volume": {
+        "exec": "~/.config/waybar/volume.sh",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 8,
+        "format": "{}",
+        "on-click": "~/.config/waybar/osd.sh vol-mute",
+        "on-scroll-up": "~/.config/waybar/osd.sh vol-up",
+        "on-scroll-down": "~/.config/waybar/osd.sh vol-down",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/audio-menu.xml",
+        "menu-actions": {
+            "sink0": "~/.config/waybar/audio-output.sh --slot 0",
+            "sink1": "~/.config/waybar/audio-output.sh --slot 1",
+            "sink2": "~/.config/waybar/audio-output.sh --slot 2",
+            "sink3": "~/.config/waybar/audio-output.sh --slot 3",
+            "sink4": "~/.config/waybar/audio-output.sh --slot 4",
+            "sink5": "~/.config/waybar/audio-output.sh --slot 5",
+            "sink6": "~/.config/waybar/audio-output.sh --slot 6",
+            "sink7": "~/.config/waybar/audio-output.sh --slot 7",
+            "mixer": "pwvucontrol 2>/dev/null || flatpak run com.saivert.pwvucontrol"
+        }
     }
 },
 
@@ -181,8 +174,6 @@
         "mpris",
     ],
     "modules-right": [
-        "load",
-      	// "wireplumber",
         "clock",
         "tray"
     ],
@@ -206,26 +197,11 @@
         "max-length": 40,
         "all-outputs": true
     },
-    "custom/cava": {
-
-	    // "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-      "exec": "cava -p ~/.config/cava/config",
-    	"framerate": 30,
-    	"autosens": 1,
-    	"bars": 14,
-    	"lower_cutoff_freq": 50,
-    	"higher_cutoff_freq": 10000,
-    	"method": "pipewire",
-    	"source": "auto",
-    	"stereo": true,
-    	"bar_delimiter": 0,
-    	"noise_reduction": 0.77,
-    	"input_delay": 2,
-      "hide_on_silence": true,
-    	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-    	"actions": {
-    	    "on-click-right": "mode"
-    	}
+        "custom/cava": {
+        "exec": "cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g'",
+        "format": "{}",
+        "restart-interval": 1,
+        "on-click": "playerctl --ignore-player=firefox play-pause"
     },
 
     "mpris": {
@@ -254,15 +230,12 @@
         "spacing": 10
     },
 
-    "load": {
-        "format": " {}"
-    },
-
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip": false,
         "format": "{:%I:%M %p}",
-        "format-alt": "{:%m-%d-%Y}"
+        "format-alt": "{:%m-%d-%Y}",
+        "on-click": "env GTK_THEME=Gruvbox-gsimplecal gsimplecal"
     },
 
     "cpu": {
@@ -303,21 +276,27 @@
         "format-icons": ["", "", "", "", ""]
     },
 
-    "wireplumber": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% ",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    "custom/volume": {
+        "exec": "~/.config/waybar/volume.sh",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 8,
+        "format": "{}",
+        "on-click": "~/.config/waybar/osd.sh vol-mute",
+        "on-scroll-up": "~/.config/waybar/osd.sh vol-up",
+        "on-scroll-down": "~/.config/waybar/osd.sh vol-down",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/audio-menu.xml",
+        "menu-actions": {
+            "sink0": "~/.config/waybar/audio-output.sh --slot 0",
+            "sink1": "~/.config/waybar/audio-output.sh --slot 1",
+            "sink2": "~/.config/waybar/audio-output.sh --slot 2",
+            "sink3": "~/.config/waybar/audio-output.sh --slot 3",
+            "sink4": "~/.config/waybar/audio-output.sh --slot 4",
+            "sink5": "~/.config/waybar/audio-output.sh --slot 5",
+            "sink6": "~/.config/waybar/audio-output.sh --slot 6",
+            "sink7": "~/.config/waybar/audio-output.sh --slot 7",
+            "mixer": "pwvucontrol 2>/dev/null || flatpak run com.saivert.pwvucontrol"
+        }
     }
 }]

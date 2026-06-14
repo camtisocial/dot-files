@@ -1,0 +1,13 @@
+show_calendar = 1
+show_timezones = 0
+mark_today = 1
+show_week_numbers = 1
+# Dismissal is handled by Hyprland's popup-dismiss bind (true click-away).
+# close_on_unfocus would fire on hover-away here because follow_mouse = 1 ties
+# focus to the pointer, so we leave it off.
+close_on_unfocus = 0
+close_on_mouseleave = 0
+mainwindow_decorated = 0
+mainwindow_keep_above = 1
+# Wayland clients can't self-position; Hyprland's move rule places it instead
+mainwindow_position = none

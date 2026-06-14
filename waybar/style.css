@@ -4,8 +4,9 @@
 }
 
 window#waybar {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, monospace;
+    /* JetBrainsMono Nerd Font bundles the icon glyphs (FontAwesome set included)
+       and is the font this repo actually installs (ttf-jetbrains-mono-nerd). */
+    font-family: "JetBrainsMono Nerd Font", monospace;
     background-color: transparent;
     border-bottom: 0px;
     color: #ebdbb2;
@@ -46,16 +47,12 @@ button {
     border: none;
 }
 
-/* Custom Clock Styles */
-#custom-clock1, #custom-clock2 {
-    /* background:  #282828; */
-    /* color: white; /1* Text color *1/ */
-    padding: 4px 8px; /* Spacing */
-    border-radius: 5px; /* Rounded corners */
+/* Clock pills (built-in clock instances: #clock.time / #clock.date) */
+#clock {
+    padding: 4px 8px;
+    border-radius: 5px;
     background-color: #282828;
-    /* background-color: #d79921; */
     color: #ebdbb2;
-    /* color: #282828; */
 }
 
 
@@ -100,14 +97,12 @@ button:hover {
 }
 
 #idle_inhibitor,
-#cava,
 #window,
 #clock,
 #backlight,
-#wireplumber,
+#custom-volume,
 #tray,
-#mpris,
-#load {
+#mpris {
     padding: 0 10px;
     background-color: #282828;
     color: #ebdbb2;
@@ -127,10 +122,6 @@ button:hover {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
-}
-
-#cava {
-    padding: 0 5px;
 }
 
 #battery.charging, #battery.plugged {
@@ -160,7 +151,15 @@ label:focus {
     background-color: #000000;
 }
 
-#wireplumber.muted {
+/* Keep the volume pill a constant width (its widest "{icon}  100%" state) so
+   it doesn't shrink when muted or when the volume is 1-2 digits. Given in em
+   (relative to font-size: 18px) so it scales if the bar font changes:
+   ~77px / 18px ~= 4.4em. min-width never clips, so 100% still fits exactly. */
+#custom-volume {
+    min-width: 4.4em;
+}
+
+#custom-volume.muted {
     background-color: #458588;
 }
 
@@ -179,5 +178,47 @@ label:focus {
 
 #tray menu {
     font-family: sans-serif;
+}
+
+/* ── Now-playing + cava merged into one "player" widget ──────────────────
+   The group/player box carries the background, so #mpris and the cava bars
+   sit on ONE continuous pill -- the group's background fills any gap between
+   them. (Note: a custom/cava module's CSS id is #custom-cava, not #cava.) */
+#player {
+    background-color: #282828;
+    border-radius: 5px;
+    padding: 0 6px;
+}
+
+#player #mpris,
+#player #custom-cava {
+    background-color: transparent;
+    padding: 0 6px;
+}
+
+/* Keep a "playing" accent without splitting the widget: gold text instead
+   of a gold fill that would only cover the mpris half. */
+#player #mpris.playing {
+    background-color: transparent;
+    color: #d79921;
+}
+
+/* ── Output-device dropdown (right-click the volume module) ──────────────── */
+menu {
+    background-color: #282828;
+    color: #ebdbb2;
+    border: 1px solid #504945;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+menuitem {
+    padding: 4px 12px;
+    border-radius: 5px;
+}
+
+menuitem:hover {
+    background-color: #3c3836;
+    color: #d79921;
 }
 

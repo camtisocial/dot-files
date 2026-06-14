@@ -1,0 +1,127 @@
+# Official repo packages (installed with: pacman -S --needed)
+# Comments and blank lines are stripped by install.sh.
+# GPU drivers are NOT listed here -- they're detected at runtime (see install.sh).
+
+# --- Core / boot ---
+base
+base-devel
+git
+linux
+linux-firmware
+linux-headers
+grub
+efibootmgr
+networkmanager
+openssh
+reflector
+man-db
+man-pages
+pacman-contrib
+xdg-user-dirs
+
+# --- Laptop / power ---
+brightnessctl
+power-profiles-daemon
+bluez
+bluez-utils
+
+# --- Hyprland / Wayland ---
+hyprland
+hyprpaper
+hyprsunset
+hypridle
+waybar
+wofi
+dunst
+wl-clipboard
+xdg-desktop-portal-wlr
+wlroots0.18
+libnotify
+xf86-input-libinput
+xorg-xinput
+xorg-xwayland
+qt5-wayland
+qt6-wayland
+hyprpolkitagent
+
+# --- Terminal ---
+kitty
+
+# --- Waybar clock popups (date pill -> calendar) ---
+gsimplecal
+
+# --- Icon theme (GTK apps + dunst notifications) ---
+papirus-icon-theme
+
+# --- GTK/cursor/icon theme GUI (lxappearance for wlroots) ---
+nwg-look
+
+# --- CLI tools ---
+zoxide
+fzf
+bat
+lsd
+tmux
+zip
+unzip
+starship
+ncdu
+dysk
+bpytop
+ripgrep
+onefetch
+
+# --- Editor ---
+neovim
+
+# --- Rust ---
+rustup
+cargo-watch
+mold
+
+# --- Dev ---
+ast-grep
+docker
+nodejs
+npm
+python-pip
+python-pipx
+
+# --- Audio (PipeWire) ---
+pipewire
+pipewire-alsa
+pipewire-audio
+pipewire-jack
+pipewire-pulse
+pipewire-docs
+wireplumber
+playerctl
+
+# --- Browser ---
+chromium
+
+# --- Media ---
+vlc
+vlc-plugins-all
+v4l2loopback-dkms
+v4l2loopback-utils
+cava
+
+# --- Apps ---
+discord
+obsidian
+qbittorrent
+gparted
+steam
+qmk
+
+# --- Caps2esc (Caps Lock -> Esc/Ctrl remap) ---
+interception-tools
+interception-caps2esc
+
+# --- Fonts ---
+ttf-jetbrains-mono-nerd
+
+# --- File managers ---
+yazi
+dolphin
