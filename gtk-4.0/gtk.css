@@ -1,0 +1,76 @@
+/* Gruvbox-dark override for GTK4 / libadwaita apps (e.g. pwvucontrol).
+ *
+ * libadwaita ships a single hardcoded Adwaita stylesheet -- you can't swap in a
+ * theme folder like with GTK3. What it DOES honour is this user stylesheet,
+ * loaded after its own, where redefining its ~named colors re-skins every
+ * widget that derives from them. So we just point those names at gruvbox.
+ *
+ * Palette: bg0 #282828, bg0_hard #1d2021, bg1 #3c3836, bg2 #504945,
+ *          bg3 #665c54, fg1 #ebdbb2, fg0 #fbf1c7, gray #928374,
+ *          gold #d79921/#fabd2f, blue #83a598, red #fb4934/#cc241d,
+ *          green #98971a/#b8bb26, aqua #689d6a/#8ec07c.
+ * Matches dunst (bg #282828, fg #ebdbb2, frames #504945/#665c54/#d79921).
+ */
+
+/* --- accent: gold. *_bg is the fill behind light text (sliders, switches,
+ * selected rows); accent_color is standalone accent text/icons on the dark
+ * bg, so it uses the brighter variant for legibility. --- */
+@define-color accent_bg_color      #d79921;
+@define-color accent_fg_color      #282828;
+@define-color accent_color         #fabd2f;
+
+/* --- semantic states --- */
+@define-color destructive_bg_color #cc241d;
+@define-color destructive_fg_color #fbf1c7;
+@define-color destructive_color    #fb4934;
+
+@define-color success_bg_color     #98971a;
+@define-color success_fg_color     #282828;
+@define-color success_color        #b8bb26;
+
+@define-color warning_bg_color     #d79921;
+@define-color warning_fg_color     #282828;
+@define-color warning_color        #fabd2f;
+
+@define-color error_bg_color       #cc241d;
+@define-color error_fg_color       #fbf1c7;
+@define-color error_color          #fb4934;
+
+/* --- window / content surfaces --- */
+@define-color window_bg_color      #282828;
+@define-color window_fg_color      #ebdbb2;
+
+@define-color view_bg_color        #1d2021;
+@define-color view_fg_color        #ebdbb2;
+
+@define-color headerbar_bg_color        #3c3836;
+@define-color headerbar_fg_color        #ebdbb2;
+@define-color headerbar_border_color    #ebdbb2;
+@define-color headerbar_backdrop_color  #282828;
+@define-color headerbar_shade_color     rgba(0, 0, 0, 0.36);
+@define-color headerbar_darker_shade_color rgba(0, 0, 0, 0.9);
+
+@define-color sidebar_bg_color           #32302f;
+@define-color sidebar_fg_color           #ebdbb2;
+@define-color sidebar_backdrop_color     #282828;
+@define-color sidebar_shade_color        rgba(0, 0, 0, 0.36);
+
+@define-color secondary_sidebar_bg_color #282828;
+@define-color secondary_sidebar_fg_color #ebdbb2;
+
+@define-color card_bg_color        #3c3836;
+@define-color card_fg_color        #ebdbb2;
+@define-color card_shade_color     rgba(0, 0, 0, 0.36);
+
+@define-color dialog_bg_color      #32302f;
+@define-color dialog_fg_color      #ebdbb2;
+
+@define-color popover_bg_color     #3c3836;
+@define-color popover_fg_color     #ebdbb2;
+@define-color popover_shade_color  rgba(0, 0, 0, 0.36);
+
+@define-color thumbnail_bg_color   #3c3836;
+@define-color thumbnail_fg_color   #ebdbb2;
+
+@define-color shade_color          rgba(0, 0, 0, 0.36);
+@define-color scrollbar_outline_color rgba(29, 32, 33, 0.5);

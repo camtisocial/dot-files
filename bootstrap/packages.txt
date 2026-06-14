@@ -30,10 +30,12 @@ hyprland
 hyprpaper
 hyprsunset
 hypridle
+hyprpicker
 waybar
 wofi
 dunst
 wl-clipboard
+cliphist
 xdg-desktop-portal-wlr
 wlroots0.18
 libnotify

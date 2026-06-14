@@ -134,6 +134,8 @@ deploy_dotfiles() {
     backup_and_link "$DOTFILES/cava/config"    "$HOME/.config/cava/config"
     backup_and_link "$DOTFILES/gtk-3.0/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
     backup_and_link "$DOTFILES/gtk-4.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini"
+    # gruvbox-dark named-color override for GTK4/libadwaita apps (pwvucontrol etc.)
+    backup_and_link "$DOTFILES/gtk-4.0/gtk.css"       "$HOME/.config/gtk-4.0/gtk.css"
 
     # SilverXMod cursor theme: downloaded, not packaged, so the files ride in the
     # repo. Deploy the theme plus the XDG "default" pointer that selects it (the
@@ -147,6 +149,9 @@ deploy_dotfiles() {
         gsettings set org.gnome.desktop.interface icon-theme   'Papirus-Dark' 2>/dev/null || true
         gsettings set org.gnome.desktop.interface cursor-theme 'SilverXMod'   2>/dev/null || true
         gsettings set org.gnome.desktop.interface cursor-size  40             2>/dev/null || true
+        # libadwaita derives its hover/border shades from the color scheme; force
+        # dark so the gruvbox-dark gtk.css overrides above sit on the right base.
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'  2>/dev/null || true
     fi
 
     # This machine is the laptop -> pick the laptop host-config variants.
