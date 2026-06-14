@@ -1,0 +1,7 @@
+# XDG "default" cursor pointer -> our SilverXMod theme.
+# (nwg-look regenerates this file; tracked here so a fresh machine inherits
+#  SilverXMod instead of falling back to the old capitaine-cursors.)
+[Icon Theme]
+Name=Default
+Comment=Default Cursor Theme
+Inherits=SilverXMod

@@ -133,10 +133,21 @@ deploy_dotfiles() {
     backup_and_link "$DOTFILES/starship.toml"  "$HOME/.config/starship.toml"
     backup_and_link "$DOTFILES/cava/config"    "$HOME/.config/cava/config"
     backup_and_link "$DOTFILES/gtk-3.0/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
+    backup_and_link "$DOTFILES/gtk-4.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini"
 
-    # Icon theme also via gsettings (GTK reads this on Hyprland without a settings daemon).
-    command -v gsettings >/dev/null && \
-        gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' 2>/dev/null || true
+    # SilverXMod cursor theme: downloaded, not packaged, so the files ride in the
+    # repo. Deploy the theme plus the XDG "default" pointer that selects it (the
+    # XCURSOR_THEME env in hypr/hyprland.conf already names it for XWayland apps).
+    backup_and_link "$DOTFILES/local/share/icons/SilverXMod"          "$HOME/.local/share/icons/SilverXMod"
+    backup_and_link "$DOTFILES/local/share/icons/default/index.theme" "$HOME/.local/share/icons/default/index.theme"
+
+    # Icon + cursor theme also via gsettings (GTK/libadwaita read this on
+    # Hyprland without a settings daemon).
+    if command -v gsettings >/dev/null; then
+        gsettings set org.gnome.desktop.interface icon-theme   'Papirus-Dark' 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface cursor-theme 'SilverXMod'   2>/dev/null || true
+        gsettings set org.gnome.desktop.interface cursor-size  40             2>/dev/null || true
+    fi
 
     # This machine is the laptop -> pick the laptop host-config variants.
     # (Relative symlinks inside the repo dir; host.conf / config.jsonc are gitignored.)
