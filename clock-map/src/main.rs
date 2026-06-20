@@ -23,8 +23,9 @@ use ratatui::widgets::Block;
 use ratatui::Frame;
 
 // Gruvbox palette, matching the waybar bar / gsimplecal popup.
-const BG_FRAME: Color = Color::Rgb(0x92, 0x83, 0x74); // border / title (gruvbox gray)
-const MAP_LAND: Color = Color::Rgb(0x66, 0x5c, 0x54); // coastlines (muted)
+const BG_FRAME: Color = Color::Rgb(0x92, 0x83, 0x74); // border (gruvbox gray)
+const TITLE_FG: Color = Color::Rgb(0xe8, 0xe8, 0xe8); // title text (a shade darker than white)
+const MAP_LAND: Color = Color::Rgb(0xe8, 0xe8, 0xe8); // coastlines (a shade darker than white)
 
 struct Zone {
     abbr: &'static str,
@@ -101,7 +102,7 @@ fn draw(f: &mut Frame, zones: &[Zone]) {
             Block::bordered()
                 .title(" U.S. Time Zones ")
                 .border_style(Style::default().fg(BG_FRAME))
-                .title_style(Style::default().fg(BG_FRAME)),
+                .title_style(Style::default().fg(TITLE_FG)),
         )
         // No background_color: cells stay unpainted so kitty's own (semi-
         // transparent) background shows through, picking up the Hyprland blur.

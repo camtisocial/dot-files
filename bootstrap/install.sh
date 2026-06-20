@@ -136,6 +136,15 @@ deploy_dotfiles() {
     backup_and_link "$DOTFILES/gtk-4.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini"
     # gruvbox-dark named-color override for GTK4/libadwaita apps (pwvucontrol etc.)
     backup_and_link "$DOTFILES/gtk-4.0/gtk.css"       "$HOME/.config/gtk-4.0/gtk.css"
+    backup_and_link "$DOTFILES/gsimplecal/config"     "$HOME/.config/gsimplecal/config"
+
+    # WirePlumber 0.5 SPA-JSON drop-ins (pins the MOTU M4 to its "Direct"
+    # profile; harmless no-op on machines without the interface).
+    backup_and_link "$DOTFILES/wireplumber/wireplumber.conf.d" "$HOME/.config/wireplumber/wireplumber.conf.d"
+
+    # Gruvbox theme for the gsimplecal calendar popup. GTK3 searches
+    # ~/.local/share/themes; hyprland.conf launches it via GTK_THEME=Gruvbox-gsimplecal.
+    backup_and_link "$DOTFILES/gtk/Gruvbox-gsimplecal" "$HOME/.local/share/themes/Gruvbox-gsimplecal"
 
     # SilverXMod cursor theme: downloaded, not packaged, so the files ride in the
     # repo. Deploy the theme plus the XDG "default" pointer that selects it (the

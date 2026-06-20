@@ -36,7 +36,9 @@ wofi
 dunst
 wl-clipboard
 cliphist
+hyprshot
 xdg-desktop-portal-wlr
+xdg-desktop-portal-hyprland
 wlroots0.18
 libnotify
 xf86-input-libinput
@@ -72,6 +74,14 @@ dysk
 bpytop
 ripgrep
 onefetch
+# croc -- end-to-end encrypted file transfer between machines (relay or P2P)
+croc
+
+# --- Task management ---
+# taskwarrior-tui is a TUI frontend; it depends on `task` (the CLI), listed
+# explicitly so the core tool survives if the TUI is ever removed.
+task
+taskwarrior-tui
 
 # --- Editor ---
 neovim
@@ -98,6 +108,8 @@ pipewire-pulse
 pipewire-docs
 wireplumber
 playerctl
+# pactl client -- required by the waybar audio-menu + output-switch scripts
+libpulse
 
 # --- Browser ---
 chromium
@@ -123,6 +135,7 @@ interception-caps2esc
 
 # --- Fonts ---
 ttf-jetbrains-mono-nerd
+noto-fonts-emoji
 
 # --- File managers ---
 yazi
